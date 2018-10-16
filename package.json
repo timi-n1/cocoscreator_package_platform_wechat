@@ -1,0 +1,27 @@
+{
+    "name": "wechat-cdn",
+    "version": "1.0.0",
+    "description": "小游戏cdn资源管理",
+    "author": "Cocos Creator",
+    "main": "main.js",
+    "main-menu": {
+        "Packages/平台/微信小游戏/资源压缩&上传CDN": {
+            "message": "wechat-cdn:run"
+        },
+        "Packages/平台/微信小游戏/总代码行数统计": {
+            "message": "wechat-cdn:codecount"
+        }
+    },
+    "dependencies": {
+        "async": "^2.6.1",
+        "excel": "^1.0.0",
+        "fs-extra": "^5.0.0",
+        "glob": "^7.1.2",
+        "image-size": "^0.6.3",
+        "jimp": "^0.2.28",
+        "json-format": "^1.0.1",
+        "request": "^2.85.0",
+        "resize-img": "^1.1.2",
+        "tar": "^4.4.0"
+    }
+}
