@@ -39,8 +39,8 @@ module.exports = function (buildPath, allDone) {
     });
     // Editor.log(localres)
 
-    const localResListAutoTemplate = path.resolve(Editor.projectInfo.path, './packages/wechat-cdn/local-res-manager/local-res-list-auto-template.js');
-    const localResListAutoPathBackup = path.resolve(Editor.projectInfo.path, './packages/wechat-cdn/local-res-manager/local-res-list-auto.js');
+    const localResListAutoTemplate = path.resolve(Editor.projectInfo.path, './packages/platform-wechat/local-res-manager/local-res-list-auto-template.js');
+    const localResListAutoPathBackup = path.resolve(Editor.projectInfo.path, './packages/platform-wechat/local-res-manager/local-res-list-auto.js');
     const localResListAutoPath = path.resolve(buildPath, './local-res-manager/local-res-list-auto.js');
 
     const templateTxt = fs.readFileSync(localResListAutoTemplate, 'utf-8').toString();
@@ -51,7 +51,7 @@ module.exports = function (buildPath, allDone) {
 
   })
 
-  const localResManagerSrcPath = path.resolve(Editor.projectInfo.path, './packages/wechat-cdn/local-res-manager/manager.js');
+  const localResManagerSrcPath = path.resolve(Editor.projectInfo.path, './packages/platform-wechat/local-res-manager/manager.js');
   const localResManagerDestPath = path.resolve(buildPath, './local-res-manager/manager.js');
   fs.copySync(localResManagerSrcPath, localResManagerDestPath)
 
