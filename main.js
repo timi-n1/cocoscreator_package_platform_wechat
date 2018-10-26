@@ -59,39 +59,9 @@ module.exports = {
             });
             Editor.log('总代码量约为' + totalcount + '行');
         },
-        'config_xlsx'() {
-            require('./excel/excel')();
-        },
-        'config_furniture_position'() {
-            require('./yardconfig/index')('furniture');
-        },
-        'config_cats_position'() {
-            require('./yardconfig/index')('cats');
-        },
-        'config_toys_position'() {
-            require('./yardconfig/index')('toys');
-        },
-        'spine_maker'() {
-            require('./cats_alive/spine')();
-        },
-        'spine_texture_maker'() {
-            require('./cats_alive/spine_texture')();
-        },
-        'furniture_texture_maker'() {
-            require('./furniture/furniture_texture')();
-        },
-        'toys_texture_maker'() {
-            require('./toys/toys_maker')();
-        },
-        'food_texture_maker'() {
-            require('./food/food_maker')();
-        },
-        'cats_category_maker'() {
-            require('./cats_category/cats_category')();
-        },
         'editor:build-start'(evt, data) {
             //Editor.warn('editor build start', evt, data);
-            if ('wechatgame' == data.platform) {
+            // if ('wechatgame' == data.platform) {
                 buildPath = `${data.dest}`;
                 const path = require('path');
                 const fs = require('fs');
@@ -103,12 +73,8 @@ module.exports = {
                     Editor.success('build=' + build);
                     fs.writeFileSync(file, newtxt);
                 }
-            }
+            // }
 
         }
-        // 'editor:build-finished'(evt, data){
-        //     buildPath = `${data.dest}`;
-        //     require('./work')(buildPath);
-        // }
     },
 };

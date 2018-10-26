@@ -59,8 +59,11 @@ module.exports = function (buildPath) {
         ['./res']
     ).then(() => {
         Editor.log('打包到' + tarFile);
+        const packagePath = path.resolve(Editor.projectInfo.path, `./package.json`);
+        const json = JSON.parse( fs.readFileSync(packagePath).toString() );
+        Editor.log('上传中转' + json.cdnUploadUrl);
         const options = {
-            url: 'http://10.54.238.67:8080/n/cdn/sync',
+            url: json.cdnUploadUrl,
             headers: {
                 'content-type': 'multipart/form-data'
             }
