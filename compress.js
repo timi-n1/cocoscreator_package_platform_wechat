@@ -4,6 +4,7 @@ const async = require('async');
 const path = require('path');
 const fs = require('fs-extra');
 const { exec } = require('child_process');
+const sizeOf = require('image-size');
 const compressFunc = {};
 let cwd = path.resolve(__dirname, '../../build/wechatgame');
 
@@ -66,6 +67,12 @@ compressFunc['.png'] = function (done) {
         async.eachOfSeries(files, (file, key, cb) => {
             
             let file0 = path.relative(cwd, file);
+            //图片尺寸检查
+            const rect = sizeOf(file);
+            if( rect.width > 2048 || rect.height > 2048 ){
+                Editor.error(`${file}过大 = ${rect.width}*${rect.height}`);
+            }
+
             let isignore = false;
             ignoreList.forEach((p)=>{
                 if( file.indexOf(p) > 0 ){

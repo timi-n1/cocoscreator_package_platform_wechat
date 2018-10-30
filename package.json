@@ -1,6 +1,6 @@
 {
     "name": "wechat-cdn",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "小游戏cdn资源管理",
     "author": "Cocos Creator",
     "main": "main.js",
@@ -14,6 +14,7 @@
     },
     "dependencies": {
         "glob": "^7.1.2",
+        "image-size": "^0.6.3",
         "tar": "^4.4.0"
     }
 }
