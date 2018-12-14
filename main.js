@@ -27,7 +27,7 @@ module.exports = {
         },
         'codecount'() {
             const path = require('path');
-            const fs = require('fs');
+            const fs = require('fs-extra');
             const glob = require("glob");
             const extList = ['.ts', '.js', '.fire', '.prefab'];
             const basePathList = [
@@ -41,7 +41,9 @@ module.exports = {
                 return lines.length;
             };
             let totalcount = 0;
+            let mycount = 0;
             const noCache = {};
+            fs.emptyDirSync(path.resolve(__dirname, `../../temp/源码`));
             basePathList.forEach((basepath) => {
                 const list = glob.sync(`${basepath}/**/*`, {});
                 list.forEach((dir) => {
@@ -49,7 +51,12 @@ module.exports = {
                     const ext = path.extname(dir);
                     if (stat.isFile()) {
                         if (extList.includes(ext)) {
-                            totalcount += getLines(dir);
+                            let lines = getLines(dir);
+                            totalcount += lines
+                            if( ext == '.ts' && stat.size > (1024*15) ){
+                                fs.copySync(dir, path.resolve(__dirname, `../../temp/源码/${path.basename(dir)}`))
+                                mycount += lines
+                            }
                         }
                         else {
                             noCache[ext] = true;
@@ -57,7 +64,7 @@ module.exports = {
                     }
                 });
             });
-            Editor.log('总代码量约为' + totalcount + '行');
+            Editor.log(`总代码量约为${totalcount}行, 检出代码为${mycount}行`);
         },
         'editor:build-start'(evt, data) {
             //Editor.warn('editor build start', evt, data);
