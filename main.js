@@ -20,7 +20,7 @@ module.exports = {
             require('./local-res-manager/index')(buildPath, () => {
                 require('./ttffix')(buildPath, () => {
                     require('./compress')(buildPath, () => {
-                        require('./work')(buildPath);
+                        require('./cdn_upload')(buildPath);
                     });
                 });
             })
@@ -59,6 +59,22 @@ module.exports = {
             });
             Editor.log('总代码量约为' + totalcount + '行');
         },
+        // 'test'(){
+        //     if (!buildPath) {
+        //         Editor.error('请先至少执行一次构建!');
+        //         return;
+        //     }
+
+        //     require('./local-res-manager/index')(buildPath, () => {
+        //         require('./ttffix')(buildPath, () => {
+        //             require('./compress')(buildPath, () => {
+        //                 require('./cdn_upload')(buildPath);
+        //             });
+        //         });
+        //     })
+            
+
+        // },
         'editor:build-start'(evt, data) {
             //Editor.warn('editor build start', evt, data);
             // if ('wechatgame' == data.platform) {
