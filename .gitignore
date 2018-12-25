@@ -1,1 +1,6 @@
 node_modules
+<<<<<<< HEAD
+=======
+.DS_Store
+local-res-list-auto.js
+>>>>>>> 34989726d851d4bd3f72d555ccded13b32cc08ba
