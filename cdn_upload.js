@@ -47,14 +47,20 @@ module.exports = function (buildPath, allDone) {
         './res/raw-assets/resources/dynamic',
         './res/raw-internal'
     ];
-    //在import目录寻找较大的文件，加入到removePathList
-    const list = glob.sync(path.resolve(cwd, `./res/import/**/*.json`), {});
-    list.forEach((file)=>{
-        const size = (fs.statSync(file).size/1024).toFixed(0);
-        if( size > 25 ){
-            // Editor.log(path.relative(cwd, file)+' = '+size+'kb');
-            removePathList.push(path.relative(cwd, file));
-        }
+    [
+        [`./res/import/**/*.json`, 25],
+        [`./res/raw-assets/resources/persist/atlas/gueatCategory/*.png `, 0],
+        [`./res/raw-assets/resources/persist/atlas/follow_official_account/*.png `, 0]
+    ]
+    .forEach((rpath)=>{
+        const list = glob.sync(path.resolve(cwd, rpath[0]), {});
+        list.forEach((file)=>{
+            const size = (fs.statSync(file).size/1024).toFixed(0);
+            if( size > rpath[1] ){
+                // Editor.log(path.relative(cwd, file)+' = '+size+'kb');
+                removePathList.push(path.relative(cwd, file));
+            }
+        });
     });
 
     let oldFiles = [];

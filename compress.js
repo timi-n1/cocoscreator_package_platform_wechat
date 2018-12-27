@@ -85,6 +85,16 @@ compressFunc['.png'] = function (done) {
                 return;
             }
 
+            //从临时文件库查找
+            let tempFile = path.resolve(os.tmpdir(), `./a/restaurant/cdn_cache/${encodeURIComponent(file)}`);
+            if( fs.existsSync(tempFile) ){
+                const sizeAfter = fs.statSync(tempFile).size;
+                sizeCompress += sizeAfter;
+                fs.copySync(tempFile, file);
+                cb();
+                return;
+            }
+
             Editor.log(`[处理]${file0}`);
             const sizeBefore = fs.statSync(file).size;
             // Editor.log(`压缩前=${(sizeBefore/1024).toFixed(0)}KB`);
@@ -96,6 +106,7 @@ compressFunc['.png'] = function (done) {
                 if (sizeAfter > sizeBefore) {
                     Editor.error('变大了' + file);
                 }
+                fs.copySync(file, tempFile);
                 cb();
             });
         }, () => {
