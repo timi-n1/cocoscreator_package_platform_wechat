@@ -13,6 +13,7 @@ module.exports = {
 
     messages: {
         'run'() {
+
             if (!buildPath) {
                 Editor.error('请先至少执行一次构建!');
                 return;
@@ -20,7 +21,9 @@ module.exports = {
             require('./local-res-manager/index')(buildPath, () => {
                 require('./ttffix')(buildPath, () => {
                     require('./compress')(buildPath, () => {
-                        require('./cdn_upload')(buildPath);
+                        require('./cdn_upload')(buildPath, ()=>{
+                            Editor.success('处理完成');
+                        });
                     });
                 });
             })
