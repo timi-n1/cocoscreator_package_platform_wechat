@@ -48,9 +48,14 @@ module.exports = function (buildPath, allDone) {
         './res/raw-internal'
     ];
     [
-        [`./res/import/**/*.json`, 25],
+        [`./res/import/**/*.json`, 20],
         [`./res/raw-assets/resources/persist/atlas/gueatCategory/*.png `, 0],
-        [`./res/raw-assets/resources/persist/atlas/follow_official_account/*.png `, 0]
+        [`./res/raw-assets/resources/persist/atlas/follow_official_account/*.png `, 0],
+        [`./res/raw-assets/resources/persist/atlas/feedback/*.png `, 0],
+        [`./res/raw-assets/resources/persist/atlas/anima/highlight.*.png `, 0],
+        [`./res/raw-assets/resources/persist/atlas/anima/heartSplited.*.png `, 0],
+        [`./res/raw-assets/resources/persist/atlas/anima/heartAlpha.*.png `, 0],
+        [`./res/raw-assets/resources/persist/atlas/foodMenuScreen/*.png `, 0],
     ]
     .forEach((rpath)=>{
         const list = glob.sync(path.resolve(cwd, rpath[0]), {});
