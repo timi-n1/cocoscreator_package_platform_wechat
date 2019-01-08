@@ -22,7 +22,9 @@ module.exports = {
                 require('./ttffix')(buildPath, () => {
                     require('./compress')(buildPath, () => {
                         require('./cdn_upload')(buildPath, ()=>{
-                            Editor.success('处理完成');
+                            require('./gamejson')(buildPath, ()=>{
+                                Editor.success('处理完成');
+                            });
                         });
                     });
                 });
